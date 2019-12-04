@@ -28,3 +28,10 @@ $('form').on('submit', (event) => {
     }
   );
 })
+
+$(document).ready(function(){
+  $("input[type='radio']").click(function(){
+      var playerActivity = $("input[name='activity']:checked").val();
+      console.log(playerActivity);
+  });
+});
