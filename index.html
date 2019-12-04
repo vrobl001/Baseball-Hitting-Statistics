@@ -7,13 +7,13 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/script.js"></script>
-    <title>Baseball Stats</title>
+    <title>MLB Hitting Statistics</title>
 </head>
 <body>
-    <h1>Baseball Stats</h1>
+    <h1>MLB Hitting Statistics</h1>
     <p> 
-        <label><input type="radio" name="activity" value="Active">Active</label> 
-        <label><input type="radio" name="activity" value="Inactive">Inactive</label>
+        <label><input id='active-button' type="radio" name="activity" value="Active">Active</label> 
+        <label><input id='inactive-button' type="radio" name="activity" value="Inactive">Inactive</label>
     </p>
     <div class="select-stats">
         <legend>Select Stats:</legend>
@@ -33,24 +33,24 @@
             <label for="check-so">Strike Outs
         </label>
     </div>
-    
-    <h3 id="player-league"></h3>
-    <h3 id="player-team"></h3>
-    <dl>
-      <dt id="name"></dt>
-      <dd id="player-name"></dd>
-      <dt id ="avg"></dt>
-      <dd id="hitting-average"></dd>
-      <dt id="hr"></dt>
-      <dd id="hitting-homeruns"></dd>
-      <dt id="rbi"></dt>
-      <dd id="hitting-rbi"></dd>
-      <dt id="obp"></dt>
-      <dd id="hitting-obp"></dd>
-      <dt id='so'></dt>
-      <dd id="hitting-so"></dd>
-    </dl>
-
+    <div id="player-info">
+        <h2 class="player-stat-info" id="player-league"></h2>
+        <h3 class="player-stat-info" id="player-team"></h3>
+        <dl>
+        <dt class="player-stat-info" id="name"></dt>
+        <dd class="player-stat-info" id="player-name"></dd>
+        <dt class="player-stat-info" id ="avg"></dt>
+        <dd class="player-stat-info" id="hitting-average"></dd>
+        <dt class="player-stat-info" id="hr"></dt>
+        <dd class="player-stat-info" id="hitting-homeruns"></dd>
+        <dt class="player-stat-info" id="rbi"></dt>
+        <dd class="player-stat-info" id="hitting-rbi"></dd>
+        <dt class="player-stat-info" id="obp"></dt>
+        <dd class="player-stat-info" id="hitting-obp"></dd>
+        <dt class="player-stat-info" id='so'></dt>
+        <dd class="player-stat-info" id="hitting-so"></dd>
+        </dl>
+    </div>
     <form>
         <input type="text" placeholder="Player Name"/>
         <input type="submit" value="Get Player Info" />
