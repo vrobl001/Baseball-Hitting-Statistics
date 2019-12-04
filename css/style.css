@@ -1,3 +1,8 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
     height: 100vh;
     justify-content: center;
@@ -36,7 +41,7 @@ div {
 }
 
 label {
-    margin-right: 20px;
+    margin-right: px;
 }
 
 h1, p {
@@ -68,12 +73,14 @@ p.stat-title {
     text-align: center;
     margin:0;
     font-size: 20px;
+    color: rgb(55, 55, 55)
 }
 
 p.stat-data {
     font-family: 'kanit', sans-serif;
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .wallpaper__background-image {
@@ -93,10 +100,10 @@ div.wallpaper {
 }
 
 input {
-      width: 150px;
+      width: 100px;
       height: 25px;
-      font-size: 18px;
-      margin-right: 0px;
+      font-size: 12px;
+      margin: 0px;
 }
 
 input#input-text {
