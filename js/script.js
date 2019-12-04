@@ -78,7 +78,7 @@ $('form').on('submit', (event) => {
     const userInput = $('input[type="text"]').val();
 
      $.ajax({
-       url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'` + playerStatus + `&name_part='` + userInput +`%25%27`
+       url:`https://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'` + playerStatus + `&name_part='` + userInput +`%25%27`
     }).then(
       (playerInfo) => {
         const playerExists =playerInfo.search_player_all.queryResults.totalSize;
@@ -125,7 +125,7 @@ $('form').on('submit', (event) => {
         $('#player-team').html(playerInfo.search_player_all.queryResults.row.team_full);
         console.log(playerInfo);
         return $.ajax({
-          url: `http://lookup-service-prod.mlb.com/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id='`+ playerID + `'`
+          url: `https://lookup-service-prod.mlb.com/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id='`+ playerID + `'`
         });
         
       },
