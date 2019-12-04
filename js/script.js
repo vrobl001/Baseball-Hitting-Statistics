@@ -17,6 +17,7 @@ $('form').on('submit', (event) => {
      $.ajax({
        url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='` + playerStatus + `'&name_part='` + userInput +`%25%27`
     })
+
     .then(
       (playerInfo) => {
       let league = playerInfo.search_player_all.queryResults.row.league;
@@ -26,6 +27,7 @@ $('form').on('submit', (event) => {
         playerLeague = 'National League'
       }
       playerID = playerInfo.search_player_all.queryResults.row.player_id;
+      $('#name').html("Player's Name")
       $('#player-name').html(playerInfo.search_player_all.queryResults.row.name_display_first_last);
       $('#player-league').html(playerLeague);
       $('#player-team').html(playerInfo.search_player_all.queryResults.row.team_full);
@@ -35,17 +37,31 @@ $('form').on('submit', (event) => {
         });
         
       },
+
       (error) => {
       console.log('bad request: ', error);
     }
+
   ).then(
     (playerStats) => {
       console.log(playerStats)
+      $('#avg').html("Hitting Average")
       $('#hitting-average').html(playerStats.sport_career_hitting.queryResults.row.avg);
+      $('#hr').html("Homeruns")
       $('#hitting-homeruns').html(playerStats.sport_career_hitting.queryResults.row.hr);
+      $('#rbi').html("Runs Batted In")
       $('#hitting-rbi').html(playerStats.sport_career_hitting.queryResults.row.rbi);
+      $('#obp').html("On Base Percentage")
       $('#hitting-obp').html(playerStats.sport_career_hitting.queryResults.row.obp);
+      $('#so').html("Strike Outs")
       $('#hitting-so').html(playerStats.sport_career_hitting.queryResults.row.so);
     }
   );
 })
+
+// const $tr = $(`
+//       <tr>
+//         <td><button class="danger">X</button></td>
+//         <td class="skillsData">${td.textContent}</td>
+//       </tr>`);
+//     $('tbody').append($tr);
