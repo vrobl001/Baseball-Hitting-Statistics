@@ -10,42 +10,39 @@ let soCheck;
 
 document.getElementById('check-avg').addEventListener("click", (checkAvg) => {
   avgCheck = $("input[name='check-avg']:checked").val();
-  console.log(avgCheck);
 })
 
 document.getElementById('check-hr').addEventListener("click", (checkhr) => {
   hrCheck = $("input[name='check-hr']:checked").val();
-  console.log(hrCheck);
 })
 
 document.getElementById('check-rbi').addEventListener("click", (checkrbi) => {
   rbiCheck = $("input[name='check-rbi']:checked").val();
-  console.log(rbiCheck);
 })
 
 document.getElementById('check-obp').addEventListener("click", (checkobp) => {
   obpCheck = $("input[name='check-obp']:checked").val();
-  console.log(obpCheck);
 })
 
 document.getElementById('check-so').addEventListener("click", (checkso) => {
   soCheck = $("input[name='check-so']:checked").val();
-  console.log(soCheck);
 })
 
 $(document).ready(function(){
   $("input[type='radio']").click(function(){
       playerActivity = $("input[name='activity']:checked").val();
-      if(playerActivity === 'Active') {playerStatus = 'Y'}
-      else if (playerActivity === 'Inactive') {playerStatus = 'N'};
+      if(playerActivity === 'undefined') {playerStatus = ''}
+      else if(playerActivity === 'Active') {playerStatus = `&active_sw='Y'`}
+      else if (playerActivity === 'Inactive') {playerStatus = `&active_sw='N'`};
   });
 });
 
 $('form').on('submit', (event) => {
     event.preventDefault();
     const userInput = $('input[type="text"]').val();
+
      $.ajax({
-       url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='` + playerStatus + `'&name_part='` + userInput +`%25%27`
+       url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'` + playerStatus + `&name_part='` + userInput +`%25%27`
     })
 
     .then(
@@ -98,10 +95,3 @@ $('form').on('submit', (event) => {
     }
   );
 })
-
-// const $tr = $(`
-//       <tr>
-//         <td><button class="danger">X</button></td>
-//         <td class="skillsData">${td.textContent}</td>
-//       </tr>`);
-//     $('tbody').append($tr);
