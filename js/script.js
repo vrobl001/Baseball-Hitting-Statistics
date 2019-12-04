@@ -22,6 +22,9 @@ $('form').on('submit', (event) => {
     (data2) => {
       $('#hitting-average').html(data2.sport_career_hitting.queryResults.row.avg);
       $('#hitting-homeruns').html(data2.sport_career_hitting.queryResults.row.hr);
+      $('#hitting-rbi').html(data2.sport_career_hitting.queryResults.row.rbi);
+      $('#hitting-obp').html(data2.sport_career_hitting.queryResults.row.obp);
+      $('#hitting-so').html(data2.sport_career_hitting.queryResults.row.so);
     }
   );
 })
