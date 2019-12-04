@@ -7,9 +7,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Kanit|Lobster|Permanent+Marker&display=swap" rel="stylesheet">
     <title>MLB Hitting Statistics</title>
 </head>
 <body>
+        <div class="wallpaper">
+                <div class="wallpaper__background-image">
+                </div>
+              </div>
     <h1>MLB Hitting Statistics</h1>
     <p> 
         <label><input id='active-button' type="radio" name="activity" value="Active">Active</label> 
@@ -17,42 +22,42 @@
     </p>
     <div class="select-stats">
         <legend>Select Stats:</legend>
-        <input type="checkbox" name="check-avg" id="check-avg">
+        <input class="selecting-stats" type="checkbox" name="check-avg" id="check-avg">
             <label for="check-avg">Hitting Average
         </label>
-        <input type="checkbox" name="check-hr" id="check-hr">
+        <input class="selecting-stats" type="checkbox" name="check-hr" id="check-hr">
             <label for="check-hr">Homeruns
         </label>
-        <input type="checkbox" name="check-rbi" id="check-rbi">
+        <input class="selecting-stats" type="checkbox" name="check-rbi" id="check-rbi">
             <label for="check-rbi">RBI
         </label>
-        <input type="checkbox" name="check-obp" id="check-obp">
+        <input class="selecting-stats" type="checkbox" name="check-obp" id="check-obp">
             <label for="check-obp">On Base Percentage
         </label>
-        <input type="checkbox" name="check-so" id="check-so">
+        <input class="selecting-stats" type="checkbox" name="check-so" id="check-so">
             <label for="check-so">Strike Outs
         </label>
     </div>
     <div id="player-info">
+        <img id="image1" class="images" src="">
         <h2 class="player-stat-info" id="player-league"></h2>
-        <h3 class="player-stat-info" id="player-team"></h3>
-        <dl>
-        <dt class="player-stat-info" id="name"></dt>
-        <dd class="player-stat-info" id="player-name"></dd>
-        <dt class="player-stat-info" id ="avg"></dt>
-        <dd class="player-stat-info" id="hitting-average"></dd>
-        <dt class="player-stat-info" id="hr"></dt>
-        <dd class="player-stat-info" id="hitting-homeruns"></dd>
-        <dt class="player-stat-info" id="rbi"></dt>
-        <dd class="player-stat-info" id="hitting-rbi"></dd>
-        <dt class="player-stat-info" id="obp"></dt>
-        <dd class="player-stat-info" id="hitting-obp"></dd>
-        <dt class="player-stat-info" id='so'></dt>
-        <dd class="player-stat-info" id="hitting-so"></dd>
-        </dl>
+        <img id="image2" class="images"  src="">
+            <h3 id="player-stat-info player-team"></h3>
+            <p class="player-stat-info stat-title" id="name"></p>
+            <p class="player-stat-info stat-data" id="player-name"></p>
+            <p class="player-stat-info stat-title" id ="avg"></p>
+            <p class="player-stat-info stat-data" id="hitting-average"></p>
+            <p class="player-stat-info stat-title" id="hr"></p>
+            <p class="player-stat-info stat-data" id="hitting-homeruns"></p>
+            <p class="player-stat-info stat-title" id="rbi"></p>
+            <p class="player-stat-info stat-data" id="hitting-rbi"></p>
+            <p class="player-stat-info stat-title" id="obp"></p>
+            <p class="player-stat-info stat-data" id="hitting-obp"></p>
+            <p class="player-stat-info stat-title" id='so'></p>
+            <p class="player-stat-info stat-data" id="hitting-so"></p>
     </div>
-    <form>
-        <input type="text" placeholder="Player Name"/>
+    <form id='form'>
+        <input type="text" placeholder="Player Name's"/>
         <input type="submit" value="Get Player Info" />
     </form>
 
