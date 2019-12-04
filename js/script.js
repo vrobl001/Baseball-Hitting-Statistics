@@ -11,11 +11,32 @@ let soCheck;
 function clearAll() {
   const playerInfo = document.getElementById('player-info');
   const playerData = playerInfo.getElementsByClassName('player-stat-info');
-  var i;
-  for (i = 0; i < playerData.length; i++) {
+  for (let i = 0; i < playerData.length; i++) {
     playerData[i].innerHTML = "";
   }
 };
+
+function showImage() {
+  document.getElementById('image1').style.visibility='visible';
+  document.getElementById('image2').style.visibility='visible';
+}
+
+function hideImage() {
+  document.getElementById('image1').style.visibility='hidden';
+  document.getElementById('image2').style.visibility='hidden';
+}
+
+function resetFontColor() {
+  document.getElementById("player-league").style.color = "black";
+}
+
+function americanLeague() {
+  document.getElementById("player-league").style.color = "red";
+}
+
+function nationalLeague() {
+  document.getElementById("player-league").style.color = "blue";
+}
 
 document.getElementById('check-avg').addEventListener("click", (checkAvg) => {
   avgCheck = $("input[name='check-avg']:checked").val();
@@ -63,19 +84,38 @@ $('form').on('submit', (event) => {
         const playerExists =playerInfo.search_player_all.queryResults.totalSize;
         if(playerExists < 1) {
           clearAll();
+          hideImage();
+          resetFontColor();
           $('#player-league').html("No players found!");
+          document.getElementById('check-avg').checked=false;
+          document.getElementById('check-hr').checked=false;
+          document.getElementById('check-rbi').checked=false;
+          document.getElementById('check-obp').checked=false;
+          document.getElementById('check-so').checked=false;
+          document.getElementById('active-button').checked=false;
+          document.getElementById('inactive-button').checked=false;
           return;
         }
 
         let activeCheck = playerInfo.search_player_all.queryResults.row.active_sw;
+
+        
         if(activeCheck === "Y") {document.getElementById('active-button').checked=true}
         else {document.getElementById('inactive-button').checked=true};
 
         let league = playerInfo.search_player_all.queryResults.row.league;
         if(league === 'AL') {
-          playerLeague = 'American League'
+          playerLeague = 'American League';
+          document.getElementById("image1").src = "https://upload.wikimedia.org/wikipedia/en/thumb/5/54/American_League_logo.svg/125px-American_League_logo.svg.png";
+          document.getElementById("image2").src = "https://upload.wikimedia.org/wikipedia/en/thumb/5/54/American_League_logo.svg/125px-American_League_logo.svg.png";
+          americanLeague();
+          showImage();
         } else if (league === 'NL') {
           playerLeague = 'National League'
+          document.getElementById("image1").src = "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/MLB_National_League_logo.svg/200px-MLB_National_League_logo.svg.png";
+          document.getElementById("image2").src = "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/MLB_National_League_logo.svg/200px-MLB_National_League_logo.svg.png";
+          nationalLeague();
+          showImage();
         };
 
         playerID = playerInfo.search_player_all.queryResults.row.player_id;
