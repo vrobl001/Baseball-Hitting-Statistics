@@ -1,10 +1,20 @@
 let playerID;
+let playerActivity;
+let playerStatus;
+
+$(document).ready(function(){
+  $("input[type='radio']").click(function(){
+      playerActivity = $("input[name='activity']:checked").val();
+      if(playerActivity === 'Active') {playerStatus = 'Y'}
+      else if (playerActivity === 'Inactive') {playerStatus = 'N'};
+  });
+});
 
 $('form').on('submit', (event) => {
     event.preventDefault();
     const userInput = $('input[type="text"]').val();
      $.ajax({
-       url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='N'&name_part='` + userInput +`%25%27`
+       url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='` + playerStatus + `'&name_part='` + userInput +`%25%27`
     })
     .then(
       (data) => {
@@ -28,10 +38,3 @@ $('form').on('submit', (event) => {
     }
   );
 })
-
-$(document).ready(function(){
-  $("input[type='radio']").click(function(){
-      var playerActivity = $("input[name='activity']:checked").val();
-      console.log(playerActivity);
-  });
-});
