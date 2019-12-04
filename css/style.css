@@ -83,6 +83,7 @@ p.stat-data {
     font-weight: bold;
 }
 
+/* allows for a background image's opacity to be changed */
 .wallpaper__background-image {
     position: absolute;
     z-index: -1;   
