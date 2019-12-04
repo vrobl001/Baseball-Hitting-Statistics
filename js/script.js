@@ -8,6 +8,14 @@ let rbiCheck;
 let obpCheck;
 let soCheck;
 
+function clearAll() {
+  const playerInfo = document.getElementById('player-info');
+  const playerData = playerInfo.getElementsByClassName('player-stat-info');
+  var i;
+  for (i = 0; i < playerData.length; i++) {
+    playerData[i].innerHTML = "";
+  }
+};
 
 document.getElementById('check-avg').addEventListener("click", (checkAvg) => {
   avgCheck = $("input[name='check-avg']:checked").val();
@@ -50,32 +58,37 @@ $('form').on('submit', (event) => {
 
      $.ajax({
        url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'` + playerStatus + `&name_part='` + userInput +`%25%27`
-    })
-
-    .then(
+    }).then(
       (playerInfo) => {
-      let activeCheck = playerInfo.search_player_all.queryResults.row.active_sw;
-      if(activeCheck === "Y") {document.getElementById('active-button').checked=true}
-      else {document.getElementById('inactive-button').checked=true}
+        const playerExists =playerInfo.search_player_all.queryResults.totalSize;
+        if(playerExists < 1) {
+          clearAll();
+          $('#player-league').html("No players found!");
+          return;
+        }
 
-      let league = playerInfo.search_player_all.queryResults.row.league;
-      if(league === 'AL') {
-        playerLeague = 'American League'
-      } else if (league === 'NL') {
-        playerLeague = 'National League'
-      }
-      playerID = playerInfo.search_player_all.queryResults.row.player_id;
-      $('#name').html("Player's Name")
-      $('#player-name').html(playerInfo.search_player_all.queryResults.row.name_display_first_last);
-      $('#player-league').html(playerLeague);
-      $('#player-team').html(playerInfo.search_player_all.queryResults.row.team_full);
-      console.log(playerInfo)
-      return $.ajax({
-        url: `http://lookup-service-prod.mlb.com/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id='`+ playerID + `'`
+        let activeCheck = playerInfo.search_player_all.queryResults.row.active_sw;
+        if(activeCheck === "Y") {document.getElementById('active-button').checked=true}
+        else {document.getElementById('inactive-button').checked=true};
+
+        let league = playerInfo.search_player_all.queryResults.row.league;
+        if(league === 'AL') {
+          playerLeague = 'American League'
+        } else if (league === 'NL') {
+          playerLeague = 'National League'
+        };
+
+        playerID = playerInfo.search_player_all.queryResults.row.player_id;
+        $('#name').html("Player's Name")
+        $('#player-name').html(playerInfo.search_player_all.queryResults.row.name_display_first_last);
+        $('#player-league').html(playerLeague);
+        $('#player-team').html(playerInfo.search_player_all.queryResults.row.team_full);
+        console.log(playerInfo);
+        return $.ajax({
+          url: `http://lookup-service-prod.mlb.com/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id='`+ playerID + `'`
         });
         
       },
-
       (error) => {
       console.log('bad request: ', error);
     }
