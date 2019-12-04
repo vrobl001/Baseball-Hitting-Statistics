@@ -34,6 +34,7 @@ $(document).ready(function(){
       if(playerActivity === 'undefined') {playerStatus = ''}
       else if(playerActivity === 'Active') {playerStatus = `&active_sw='Y'`}
       else if (playerActivity === 'Inactive') {playerStatus = `&active_sw='N'`};
+      console.log(playerActivity);
   });
 });
 
@@ -47,6 +48,10 @@ $('form').on('submit', (event) => {
 
     .then(
       (playerInfo) => {
+      let activeCheck = playerInfo.search_player_all.queryResults.row.active_sw;
+      if(activeCheck === "Y") {document.getElementById('active-button').checked=true}
+      else {document.getElementById('inactive-button').checked=true}
+      
       let league = playerInfo.search_player_all.queryResults.row.league;
       if(league === 'AL') {
         playerLeague = 'American League'
