@@ -2,6 +2,36 @@ let playerID;
 let playerActivity;
 let playerStatus;
 let playerLeague;
+let avgCheck;
+let hrCheck;
+let rbiCheck;
+let obpCheck;
+let soCheck;
+
+document.getElementById('check-avg').addEventListener("click", (checkAvg) => {
+  avgCheck = $("input[name='check-avg']:checked").val();
+  console.log(avgCheck);
+})
+
+document.getElementById('check-hr').addEventListener("click", (checkhr) => {
+  hrCheck = $("input[name='check-hr']:checked").val();
+  console.log(hrCheck);
+})
+
+document.getElementById('check-rbi').addEventListener("click", (checkrbi) => {
+  rbiCheck = $("input[name='check-rbi']:checked").val();
+  console.log(rbiCheck);
+})
+
+document.getElementById('check-obp').addEventListener("click", (checkobp) => {
+  obpCheck = $("input[name='check-obp']:checked").val();
+  console.log(obpCheck);
+})
+
+document.getElementById('check-so').addEventListener("click", (checkso) => {
+  soCheck = $("input[name='check-so']:checked").val();
+  console.log(soCheck);
+})
 
 $(document).ready(function(){
   $("input[type='radio']").click(function(){
@@ -45,16 +75,26 @@ $('form').on('submit', (event) => {
   ).then(
     (playerStats) => {
       console.log(playerStats)
+      if(avgCheck === "on"){
       $('#avg').html("Hitting Average")
       $('#hitting-average').html(playerStats.sport_career_hitting.queryResults.row.avg);
+      };
+      if(hrCheck === "on") {
       $('#hr').html("Homeruns")
       $('#hitting-homeruns').html(playerStats.sport_career_hitting.queryResults.row.hr);
+      };
+      if(rbiCheck === "on") {
       $('#rbi').html("Runs Batted In")
       $('#hitting-rbi').html(playerStats.sport_career_hitting.queryResults.row.rbi);
+      };
+      if(obpCheck === "on") {
       $('#obp').html("On Base Percentage")
       $('#hitting-obp').html(playerStats.sport_career_hitting.queryResults.row.obp);
+      };
+      if(soCheck === "on") {
       $('#so').html("Strike Outs")
       $('#hitting-so').html(playerStats.sport_career_hitting.queryResults.row.so);
+      };
     }
   );
 })
