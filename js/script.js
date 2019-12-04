@@ -8,6 +8,14 @@ let rbiCheck;
 let obpCheck;
 let soCheck;
 
+function handleUnselect() {
+  Array.from($('input[type="checkbox"]')).forEach(el => {
+    if(el.checked) {
+      el.checked = false
+    }
+  });
+}
+
 function clearAll() {
   const playerInfo = document.getElementById('player-info');
   const playerData = playerInfo.getElementsByClassName('player-stat-info');
@@ -91,6 +99,7 @@ $(document).ready(function(){
 
 $('form').on('submit', (event) => {
     event.preventDefault();
+    handleUnselect();
     const userInput = $('input[type="text"]').val();
 
      $.ajax({
