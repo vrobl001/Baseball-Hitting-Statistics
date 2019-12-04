@@ -1,6 +1,7 @@
 let playerID;
 let playerActivity;
 let playerStatus;
+let playerLeague;
 
 $(document).ready(function(){
   $("input[type='radio']").click(function(){
@@ -17,9 +18,18 @@ $('form').on('submit', (event) => {
        url:`http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='` + playerStatus + `'&name_part='` + userInput +`%25%27`
     })
     .then(
-      (data) => {
-      playerID = data.search_player_all.queryResults.row.player_id
-      $('#player-name').html(data.search_player_all.queryResults.row.name_display_first_last);
+      (playerInfo) => {
+      let league = playerInfo.search_player_all.queryResults.row.league;
+      if(league === 'AL') {
+        playerLeague = 'American League'
+      } else if (league === 'NL') {
+        playerLeague = 'National League'
+      }
+      playerID = playerInfo.search_player_all.queryResults.row.player_id;
+      $('#player-name').html(playerInfo.search_player_all.queryResults.row.name_display_first_last);
+      $('#player-league').html(playerLeague);
+      $('#player-team').html(playerInfo.search_player_all.queryResults.row.team_full);
+      console.log(playerInfo)
       return $.ajax({
         url: `http://lookup-service-prod.mlb.com/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id='`+ playerID + `'`
         });
@@ -29,12 +39,13 @@ $('form').on('submit', (event) => {
       console.log('bad request: ', error);
     }
   ).then(
-    (data2) => {
-      $('#hitting-average').html(data2.sport_career_hitting.queryResults.row.avg);
-      $('#hitting-homeruns').html(data2.sport_career_hitting.queryResults.row.hr);
-      $('#hitting-rbi').html(data2.sport_career_hitting.queryResults.row.rbi);
-      $('#hitting-obp').html(data2.sport_career_hitting.queryResults.row.obp);
-      $('#hitting-so').html(data2.sport_career_hitting.queryResults.row.so);
+    (playerStats) => {
+      console.log(playerStats)
+      $('#hitting-average').html(playerStats.sport_career_hitting.queryResults.row.avg);
+      $('#hitting-homeruns').html(playerStats.sport_career_hitting.queryResults.row.hr);
+      $('#hitting-rbi').html(playerStats.sport_career_hitting.queryResults.row.rbi);
+      $('#hitting-obp').html(playerStats.sport_career_hitting.queryResults.row.obp);
+      $('#hitting-so').html(playerStats.sport_career_hitting.queryResults.row.so);
     }
   );
 })
