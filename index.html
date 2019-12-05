@@ -11,37 +11,32 @@
     <title>MLB Hitting Statistics</title>
 </head>
 <body>
-        <div class="wallpaper">
-            <div class="wallpaper__background-image">
-            </div>
+
+    <div class="wallpaper">
+        <div class="wallpaper__background-image">
         </div>
+    </div>
+
     <h1>MLB Hitting Statistics</h1>
+
+    <div class="radio-buttons">
     <p> 
         <label><input id='active-button' type="radio" name="activity" value="Active">Active</label> 
         <label><input id='inactive-button' type="radio" name="activity" value="Inactive">Inactive</label>
     </p>
-    <div class="select-stats">
-        <legend>Select Stats:</legend>
-        <input class="selecting-stats" type="checkbox" name="check-avg" id="check-avg">
-            <label for="check-avg">Hitting Average
-        </label>
-        <input class="selecting-stats" type="checkbox" name="check-hr" id="check-hr">
-            <label for="check-hr">Homeruns
-        </label>
-        <input class="selecting-stats" type="checkbox" name="check-rbi" id="check-rbi">
-            <label for="check-rbi">RBI
-        </label>
-        <input class="selecting-stats" type="checkbox" name="check-obp" id="check-obp">
-            <label for="check-obp">On Base Percentage
-        </label>
-        <input class="selecting-stats" type="checkbox" name="check-so" id="check-so">
-            <label for="check-so">Strike Outs
-        </label>
     </div>
+
+    <div id="select-stats">
+        <legend>Select Stats:</legend>
+            <label><input id="check-avg" class="stat" type="checkbox" name="check-avg">Hitting Average</label>
+            <label><input id="check-hr" class="stat" type="checkbox" name="check-hr">Homeruns</label>
+            <label><input id="check-rbi" class="stat" type="checkbox" name="check-rbi">RBI</label>
+            <label><input id="check-obp" class="stat" type="checkbox" name="check-obp">On Base Percentage</label>
+            <label><input id="check-so" class="stat" type="checkbox" name="check-so">Strike Outs</label>
+    </div>
+
     <div id="player-info">
-        <img id="image1" class="images" src="">
-        <h2 class="player-stat-info" id="player-league"></h2>
-        <img id="image2" class="images"  src="">
+        <img id="image1" class="images" src=""> <h2 class="player-stat-info" id="player-league"> </h2><img id="image2" class="images"  src="">
             <h3 id="player-team" class="player-stat-info"></h3>
             <p class="player-stat-info stat-title" id="name"></p>
             <p class="player-stat-info stat-data" id="player-name"></p>
