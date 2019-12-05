@@ -22,7 +22,20 @@ function noResults() {
     resetFontColor();
     document.getElementById('active-button').checked=false;
     document.getElementById('inactive-button').checked=false;
-    $('#player-league').html("No players found!");
+    playerStatus = undefined;
+    playerExists = undefined;
+    if(playerActivity === 'Active') {
+      $('#player-league').html("No active player with that name found!");
+      playerActivity = undefined;
+    }
+    else if (playerActivity === 'Inactive') {
+      $('#player-league').html("No inactive player with that name found!");
+      playerActivity = undefined;
+    }
+    else {
+      $('#player-league').html("No players found!");
+      playerActivity = undefined;
+    };
     return;
 }
 
