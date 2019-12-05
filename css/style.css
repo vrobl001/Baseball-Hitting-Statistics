@@ -15,7 +15,6 @@ body {
 
 h1 {
     font-size: 60px;
-    margin: 0;
 }
 
 h2 {
@@ -32,30 +31,15 @@ h3 {
 div {
     padding: 10px;
     align-content: center;
-    display: flex;
-
 }
 
 #form {
     padding: 15px;
 }
 
-label {
-    margin-right: px;
-}
 
 h1, p {
-    padding-left: 7px;
     font-family: 'roboto mono', sans-serif;
-}
-
-div#player-info {
-   display: block;
-}
-
-div.select-stats {
-    justify-content: center;
-    margin: 25px 250px 25px 250px;
 }
 
 img {
@@ -83,7 +67,6 @@ p.stat-data {
     font-weight: bold;
 }
 
-/* allows for a background image's opacity to be changed */
 .wallpaper__background-image {
     position: absolute;
     z-index: -1;   
@@ -104,7 +87,6 @@ input {
       width: 100px;
       height: 25px;
       font-size: 12px;
-      margin: 0px;
 }
 
 input#input-text {
@@ -117,5 +99,6 @@ form#form {
 
 legend, label {
       font-weight: bold;
-      font-size: 15px;
+      font-size: 17px;
+      padding-bottom: 10px;
 }
