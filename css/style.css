@@ -42,7 +42,7 @@ h1, p {
     font-family: 'roboto mono', sans-serif;
 }
 
-img {
+img.images {
     height: 50px;
     width: 50px;
     float: none;
@@ -101,4 +101,10 @@ legend, label {
       font-weight: bold;
       font-size: 17px;
       padding-bottom: 10px;
+}
+
+#player-picture {
+    width: 107px;
+    height: 160px;
+    visibility: hidden;
 }

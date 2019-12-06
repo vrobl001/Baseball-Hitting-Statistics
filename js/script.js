@@ -41,11 +41,14 @@ function noResults() {
 
 function showImage() {
   const images = document.getElementsByClassName('images');
-  for(let i = 0; i < images.length; i++) images[i].style.visibility='visible';};
+  for(let i = 0; i < images.length; i++) images[i].style.visibility='visible';
+};
 
 function hideImage() {
   const images = document.getElementsByClassName('images');
-  for(let i = 0; i < images.length; i++) images[i].style.visibility='hidden';};
+  for(let i = 0; i < images.length; i++) images[i].style.visibility='hidden';
+  document.getElementById('player-picture').style.visibility = 'hidden';
+};
 
 function resetFontColor() {document.getElementById("player-league").style.color = "black";};
 
@@ -121,12 +124,15 @@ $('form').on('submit', (event) => {
         if(league === 'AL') americanLeague();
         else if(league === 'NL') nationalLeague();
     
-        playerID = playerInfo.search_player_all.queryResults.row.player_id; 
+        playerID = playerInfo.search_player_all.queryResults.row.player_id;
+        console.log(playerID); 
         $('#name').html("Player's Name")
         $('#player-name').html(playerInfo.search_player_all.queryResults.row.name_display_first_last);
         $('#player-league').html(playerLeague);
         $('#player-team').html(playerInfo.search_player_all.queryResults.row.team_full);
-
+        document.getElementById('player-picture').src ='https://securea.mlb.com/mlb/images/players/head_shot/' + playerID + '.jpg';
+        console.log( $('#player-picture'));
+        document.getElementById('player-picture').style.visibility = 'visible';
         return $.ajax({
           url: `https://lookup-service-prod.mlb.com/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id='`+ playerID + `'`
         });
